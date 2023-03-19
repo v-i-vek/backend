@@ -1,5 +1,5 @@
 const userModel = require('../model/register.model')
-
+const bcrypt = require('bcrypt')
 
 
 
@@ -14,8 +14,10 @@ const userLoginPost = async(req,res)=>{
         const password = req.body.upassword
       
         const dbmail = await userModel.findOne({email:email})
-        
-        if(dbmail.password ===password){
+
+        // bcrypt hash is checked in the database using the compare 
+        const isMatch = bcrypt.compare(password,dbmail.password)
+        if(isMatch){
             
           return  res.status(201).send('login successfully')
          
