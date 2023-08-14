@@ -1,0 +1,53 @@
+.App{
+    text-align: center;
+    margin: 50px;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1.user{
+    position: absolute;
+    right: 45px;
+    top:10px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  p{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  button{
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover{
+    background-color: #2980b9;
+  }
+  
+  .selected{
+    font-weight: bold;
+  }
+  
+  .selected-info{
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
+  img{
+    height: 180px;
+    width: 180px;
+  }
+
+  img.deviceimg{
+    height: 100px;
+    width: 100px;
+  }
