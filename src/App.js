@@ -18,8 +18,7 @@ const App = () => {
                 <Route path='/dash' Component={dash} />
             </Routes>
         </Router>
-    )
-
+    );
 }
 export default App;
 

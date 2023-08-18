@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// Import useNavigate
 import "./Login.css";
+
 
 // let dataPort;
 function SignInForm() {
@@ -9,6 +9,7 @@ function SignInForm() {
     const [password, setPassword] = useState("");
     const url = "https://tn3i1ninuf.execute-api.ap-south-1.amazonaws.com/dev/signin";
     const navigate = useNavigate(); // Initialize useNavigate  
+    
     const Login = async () => {
         if (email === "" || password === "") {
             alert("Please fill in both email and password.");
@@ -24,18 +25,17 @@ function SignInForm() {
                 });
             console.log("responce:", response)
            
-            
             if (response.status === 200) {
                 const data = await response.json();
-                const userExpersionTime = new Date(Date.now()+12 * 60 * 60 * 1000)
+                const userExpersionTime = new Date(Date.now()+ 12 * 60 * 60 * 1000)
                 localStorage.setItem('data', JSON.stringify(data));
                 localStorage.setItem('userExpersionTime', userExpersionTime.toISOString());
 
-
-                // dataPort =data
+                // dataPort = data
                 console.log("Data:", data);
                 alert("Signin successful")
                 navigate("/dash");
+                window.location.reload(true);
             }
             else {
                 console.error("Error signing in:", response.statusText);
@@ -61,5 +61,4 @@ function SignInForm() {
     </div>
     )
 }
-// export {dataPort}
 export default SignInForm ;

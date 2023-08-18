@@ -1,137 +1,196 @@
 /* App.css */
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oswald&family=Rubik+Wet+Paint&display=swap');
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .tabs {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .tabs button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #2b93bf;
-    cursor: pointer;
-  }
-  
-  .tabs button:focus {
-    outline: none;
-  }
-  
-  .tabs button:hover {
-    background-color: #ddd;
-  }
-  
-  .component-container {
-    padding: 20px;
-    border: 1px solid #ccc;
-  }
-  
-  .component-container h2 {
-    margin-top: 0;
-  }
-  
-  .specs-button {
-    margin-top: 10px;
-  }
-  
-  .specs {
-    margin-top: 10px;
-  }
-  
-  /* New styles for the layout */
-  .home-office-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .home-office-container .home-office {
-    flex: 1;
-  }
-  
-  .ac-fan-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .ac-fan-container p {
-    margin: 5px 0;
-  }
-  
-  
-.tabs button.active {  
-    background-color: #ddd;
-    color: #333;
-  }
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #E7FFFF;
+  color:#070707; 
+  cursor: pointer;
+  width: 50%;
+  font-size: 14px;
+
+
+}
+
+.tabs button:focus {
+  outline: none;
+}
+/* 
+.tabs button:hover {
+  background-color: #7ac3ff;
+} */
+
+.component-container {
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px;
+  /* box-shadow: 0px 10px 20px 5px rgba(8, 190, 245, 0.5); */
+  box-shadow: 0px 10px 20px 5px rgba(39, 104, 202, 0.5);
+  border-radius: 15px;
+}
+
+.component-container:hover {
+  box-shadow: 0px 10px 20px 5px rgba(8, 190, 245, 0.5);
+  transform: translateY(-5px);
+}
+
+.component-container h2 {
+  margin-top: 0;
+}
+
+.specs-button {
+  margin-top: 10px;
+    border-radius: 20px;
+    
+
+}
+
+.specs {
+  margin-top: 10px;
+}
+
+/* New styles for the layout */
+.home-office-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.home-office-container .home-office {
+  flex: 1;
+}
 
 .ac-fan-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .ac-fan-container .specs-button {
-    margin: 5px 0;
-  }
+  display: flex;
+  justify-content: space-between;
+}
+
+.ac-fan-container p {
+  margin: 5px 0;
+}
+
+ .tabs button.active {
+  /* background-color: #4aacc7; */
+  color:#070707;  
+  /* border-radius: 20px; */
+  border-bottom: 3px solid rgb(0, 160, 253);
+ 
+} 
+
+.ac-fan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ac-fan-container .specs-button {
+  margin: 5px 0;
+}
+
 
 .dash-container {
-    display: flex;
-  }
-  
-  .devices {
-    flex: 1;
-    padding-right: 20px;
-  }
-  
-  .specifications {
-    flex: 1;
-  }
-    
-  /* dash.css */
+  display: flex;
+}
 
-/* ... (previous CSS rules) */
+.devices {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.specifications {
+  flex: 1;
+}
 
 .dash-container {
-    display: flex;
-  }
-  
-  .devices {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .specifications {
-    flex: 1;
-  }
+  display: flex;
+}
 
-  h4.email{
-    position: absolute;
-    right: 45px;
-    top:0px;
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
+.devices {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 
-  h1{
-    margin: 50px;
-  }
-  
-  /* Adjust the styles as needed for your design */
-  
+.specifications {
+  flex: 1;
+}
+
+h1.email {
+  position: absolute;
+  right: 45px;
+  top: 15px;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+div.logo {
+  margin: 50px;
+  font-size: 40px;
+
+}
+
+img {
+  height: 50px;
+  width: 50px;  
+  margin-top: 2px;
+
+}
+div.header{
+  height: 60px;
+  background-color: #4aacc7;
+}
+
+
+
+h1.app{font-family: 'Lobster', cursive;
+  font-family: 'Oswald', sans-serif;
+  font-family: 'Rubik Wet Paint', cursive;
+  position: absolute;
+  margin-top: 10px;
+  left: 20px;
+  color: #070707;
+}
+
+/* h1.app {
+  margin-top: 1px;
+  font-size: 30px;
+  color: #0a0a0a;
+  text-shadow:
+    1px 1px 1px #cffaed,
+    2px 2px 1px #789e93,
+    3px 3px 1px #789e93,
+    4px 4px 1px #020e0f,
+    5px 5px 1px #020f11,
+    6px 6px 1px #031b1f,
+    7px 7px 1px #005a66,
+    8px 8px 1px #005a66,
+    25px 25px 8px rgba(0, 0, 0, 0.2);
+} */
+
+button.specs-button.active{
+  width: 100px;
+  align-self: center;
+}

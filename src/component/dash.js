@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './dash.css';
-
+// import logo from './images/logo.jpg';
 import AWS from 'aws-sdk';
 
 AWS.config.update({
@@ -9,22 +9,14 @@ AWS.config.update({
     secretAccessKey: 'irQddETwrgYvXEJdqQXqt7ztpMLFnIuRSXmFbULY',
 });
 
-//this data is fetching from the local storage
-const UserEmail = JSON.parse(localStorage.getItem('data'));
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-
-
 const Home = ({ activeTab, onClick, deviceData }) => {
-
+  
     const [showSpecs, setShowSpecs] = useState(false);
     const [deviceState, setDeviceState] = useState(true);
-    
 
     if (deviceData.location !== 'home') {
-            
-
-        // console.log("this is the console ++++++++++++++++++",item.email)
         return null;
     }
 
@@ -41,7 +33,7 @@ const Home = ({ activeTab, onClick, deviceData }) => {
                             onClick('home');
                         }}
                     >
-                        {deviceState ? `${deviceData.name} [On]` : `${deviceData.name} [Off]`}
+                        {deviceState ? `On` : `Off`}
                     </button>
                 </div>
                 <div className="specifications">
@@ -67,7 +59,6 @@ const Office = ({ activeTab, onClick, deviceData }) => {
     const [deviceState, setDeviceState] = useState(true);
 
     if (deviceData.location !== 'office') {
-        // Return null if the device's location is not office
         return null;
     }
 
@@ -83,22 +74,21 @@ const Office = ({ activeTab, onClick, deviceData }) => {
                             setShowSpecs(!showSpecs);
                             setDeviceState(!deviceState);
                         }}
+
                     >
-                        {deviceState ? `${deviceData.name} [On]` : `${deviceData.name} [Off]`}
+                        {deviceState ? `On` : `Off`}
                     </button>
                 </div>
                 <div className="specifications">
                     {showSpecs && (
                         <>
                             <p>Device Name: {deviceData.name}</p>
-                            {deviceData.type === 'AC' && (
+                            {deviceData.type === 'ac' && (
                                 <>
                                     <p>Temperature: {deviceData.temperature}°C</p>
-                                    {/* Add more AC-specific properties if needed */}
                                 </>
                             )}
-                            <p>Fan Speed: {deviceData.fanSpeed}</p>
-                            {/* Add more properties as needed */}
+                            <p>Fan Speed:{deviceData.fanSpeed}</p>
                         </>
                     )}
                 </div>
@@ -108,10 +98,80 @@ const Office = ({ activeTab, onClick, deviceData }) => {
 };
 
 
-const App = () => {
+// const App = () => {
 
+//     const [items, setItems] = useState([]);
+//     const [activeTab, setActiveTab] = useState('home');
+
+//     useEffect(() => {
+//         const params = {
+//             TableName: 'devices',
+//         };
+
+//         dynamodb.scan(params, (error, data) => {
+//             if (error) {
+//                 console.error('Error fetching items:', error);
+//             } else {
+//                 setItems(data.Items);
+//             }
+//         });
+//     }, []);
+
+//     return (
+//         <><div className='header'>
+//             <h1 className='email'>&#128231;{UserEmail.email}</h1>
+//             <h1 className='app'> ThingSync</h1>
+//         </div><></><div className="container">
+
+//                 <div className='abc'>
+//                 </div>
+//                 <div className="tabs">
+//                     <button
+//                         className={activeTab === 'home' ? 'active' : ''}
+//                         onClick={() => setActiveTab('home')}
+//                     >
+//                     &#127968;HOME
+//                     </button>
+//                     <button
+//                         className={activeTab === 'office' ? 'active' : ''}
+//                         onClick={() => setActiveTab('office')}
+//                     >
+//                     &#127970;OFFICE
+//                     </button>
+//                 </div>
+//                 {items.map((item, index) => (
+//                     <div className="item-container" key={index}>
+//                         {activeTab === 'home' ? (
+//                             <Home activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
+//                         ) : (
+//                             <Office activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
+//                         )}
+//                     </div>
+//                 ))}
+//             </div></>
+//     );
+// };
+
+// export default App;
+
+// import React, { useState, useEffect } from 'react';
+// import './dash.css';
+// import AWS from 'aws-sdk';
+
+// AWS.config.update({
+//     region: 'ap-south-1',
+//     accessKeyId: 'YOUR_ACCESS_KEY_ID',
+//     secretAccessKey: 'YOUR_SECRET_ACCESS_KEY',
+// });
+
+// const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+const App = () => {
     const [items, setItems] = useState([]);
     const [activeTab, setActiveTab] = useState('home');
+    
+    //this data is fetching from the local storage
+    const UserEmail = JSON.parse(localStorage.getItem('data'));
 
     useEffect(() => {
         const params = {
@@ -122,40 +182,48 @@ const App = () => {
             if (error) {
                 console.error('Error fetching items:', error);
             } else {
-                setItems(data.Items);
+                // Filter items based on user's email
+                const filteredItems = data.Items.filter(item => item.email === UserEmail.email);
+                setItems(filteredItems);
             }
         });
-    }, []);
+    }, [UserEmail]);
 
     return (
-        <div className="container">
-             <h4 className='email'>&#128231;{UserEmail.email}</h4>
-            <h1>Smart Home Control</h1>
-            <div className="tabs">
-                <button
-                    className={activeTab === 'home' ? 'active' : ''}
-                    onClick={() => setActiveTab('home')}
-                >
-                    HOME
-                </button>
-                <button
-                    className={activeTab === 'office' ? 'active' : ''}
-                    onClick={() => setActiveTab('office')}
-                >
-                    OFFICE
-                </button>
+        <div>
+            <div className='header'>
+                <h1 className='email'>&#128231;{UserEmail.email}</h1>
+                <h1 className='app'> ThingSync</h1>
             </div>
-            {items.map((item, index) => (
-                <div className="item-container" key={index}>
-                    {activeTab === 'home' ? (
-                        <Home activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
-                    ) : (
-                        <Office activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
-                    )}
+            <div className="container">
+                <div className='abc'></div>
+                <div className="tabs">
+                    <button
+                        className={activeTab === 'home' ? 'active' : ''}
+                        onClick={() => setActiveTab('home')}
+                    >
+                        &#127968;HOME
+                    </button>
+                    <button
+                        className={activeTab === 'office' ? 'active' : ''}
+                        onClick={() => setActiveTab('office')}
+                    >
+                        &#127970;OFFICE
+                    </button>
                 </div>
-            ))}
+                {items.map((item, index) => (
+                    <div className="item-container" key={index}>
+                        {activeTab === 'home' ? (
+                            <Home activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
+                        ) : (
+                            <Office activeTab={activeTab} onClick={setActiveTab} deviceData={item} />
+                        )}
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
 
 export default App;
+
