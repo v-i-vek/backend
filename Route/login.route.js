@@ -1,9 +1,10 @@
 const express = require('express')
 const LoginRoute = express.Router()
-const{ userLoginGet} = require('../controller/login.controller')
+const{ userLoginGet,userLoginPost} = require('../controller/login.controller')
 
 LoginRoute.get('/login',userLoginGet)
 
+LoginRoute.post('/login',userLoginPost)
 
 
 

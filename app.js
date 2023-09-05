@@ -34,7 +34,7 @@ connectDb(DB_URL)
 // route for the urls hits on the browser
 app.use(route)
 app.use(LoginRoute)
-
+// app.post('/login',)
 
 
 app.listen(Port,()=>{

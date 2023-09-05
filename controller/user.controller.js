@@ -34,4 +34,4 @@ const userPost = async(req,res)=>{
 
 
 
-module.exports = {userGet}
+module.exports = {userGet,userPost}
